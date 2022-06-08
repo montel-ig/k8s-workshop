@@ -12,7 +12,8 @@ Based on [Digital Ocean Tutorial](https://www.digitalocean.com/community/tutoria
 
 ## Creating Kubernetes cluster with Ansible 
 
-- First edit the `hosts` file and add the IP addresses of machines
+- Make a copy of the `hosts.example` file and rename it to `hosts
+- Edit the `hosts` file and add the IP addresses of the machines
 - Also add path to your SSH public key, which you are using for connecting to the machines
 
 ### Initial setup
