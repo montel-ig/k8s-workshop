@@ -57,6 +57,33 @@ Run Ansible playbook:
 At the control-plane setup stage we copied the `KUBECONFIG` file, so we can use `kubectl` from local machine to 
 control cluster.
 
-Run: `export KUBECONFIG=KUBECONFIG`
+Run: `export KUBECONFIG=$(pwd)KUBECONFIG`
 
 Now check that you are connected to correct cluster: `kubectl cluster-info` and/or `kubectl get nodes`
+
+### Deploying example application
+
+In `example-app` folder you can find two files: `deployment.yaml` and `service.yaml`
+
+- `deployment.yaml` will deploy very basic nginx container
+- `service.yaml` will create _NodePort_ service, so you can connect to application with worker node ip and specific port
+
+Deploy nginx by running:
+
+    kubectl apply -f example-app/deployment.yaml
+
+Check that it's deployed:
+
+    kubectl get deployments
+
+Deploy Service by running:
+
+    kubectl apply -f example-app/service.yaml
+
+Check that service is created and also port is assigned:
+
+    kubectl get services
+
+Now you can open up the application in browser with `http://<worker-node-ip>:<port>`
+
+Assigned port range is usually 30000-32767
